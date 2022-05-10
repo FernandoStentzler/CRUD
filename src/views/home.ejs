@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Olá <%= nomeUsuario %> <%= idadeUsuario %> </h1>
+
+    <form action="/confirmarcontato" method="GET">
+        <label for="nome">Nome</label>
+        <input placeholder="Digite Aqui Seu Nome" type="text" name="nome" id="nome">
+        
+        <label for="email">Email</label>
+        <input placeholder="Digite Aqui Seu Email" type="email" name="email" id="email">
+        <br>
+        <br>
+        <label for="">Formas De Pagamento</label>
+        <br>
+        <label for="dinheiro">Dinheito</label>
+        <input type="radio" name="forma-de-pagamento" value="Dinheiro" id="dinheiro">
+        <br>
+        <label for="cartao">Cartão</label>
+        <input type="radio" name="forma-de-pagamento" value="Cartao" id="cartao">
+        <br>
+        <label for="cheque">Cheque</label>
+        <input type="radio" name="forma-de-pagamento" value="Cheque" id="cheque">
+        <br>
+        <br>
+        <label for="comentario">Deixei Seu Comentario</label>
+        <br>
+        <textarea placeholder="Digite Seu Texto Aqui" name="comentario" id="comentario"></textarea>
+        <br>
+        <label>Selecione o mês do seu aniversário</label>
+        <br>
+        <select name="mes">
+          <option value="1">Janeiro</option>
+          <option value="2">Fevereiro</option>
+          <option value="3">Março</option>
+          <option value="4">Abril</option>
+          <option value="5">Maio</option>
+          <option value="6">Junho</option>
+          <option value="7">Julho</option>
+          <option value="8">Agosto</option>
+          <option value="9">Setembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
+        </select>
+        <br>
+        <br>
+        <label for="fecha">Selecione Sua data de Nascimento</label>
+        <br>
+        <input id="fecha" type="date" name="fecha" value="2022-05-09" min="1900-01-01" max="2025-01-01">
+        <br>
+        <br>
+        <label for="avatar">Selecione Sua Foto de Perfil</label>
+        <br>
+        <input id="avatar" type="file" name="avatar" accept=".jpg" multiple>
+        <br>
+        <br>
+        <button type="submit">Enviar</button>
+        <button type="reset">Limpar</button>
+    </form>
+</body>
+
+</html>
