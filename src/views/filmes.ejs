@@ -8,7 +8,7 @@
     <title>Lista de todos os Filmes</title>
 </head>
 <body>
-    <form action="/filmes" method="POST">
+    <form action="/filmes" method="POST" enctype="multipart/form-data">
         <label for="nome">Nome</label>
         <br>
         <input placeholder="Digite aqui o Nome do Filmes" type="text" name="nome" id="nome">
@@ -20,6 +20,11 @@
         <label for="duracao">Duração</label>
         <br>
         <input type="number" name="duracao" id="duracao">
+        <br>
+        <br>
+        <label for="avatar">Sua Foto de Perfil</label>
+        <br>
+        <input type="file" name="avatar" id="avatar" accept=".jpg">
         <br>
         <br>
         <button type="submit">Enviar</button>
