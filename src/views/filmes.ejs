@@ -5,21 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/style.css"/>
-    <title>Lista de todos os Filmes</title>
+    <title>Formulario para Criação de Filmes</title>
 </head>
 <body>
+    
     <form action="/filmes" method="POST" enctype="multipart/form-data">
-        <label for="nome">Nome</label>
+        <label for="">Nome</label>
         <br>
-        <input placeholder="Digite aqui o Nome do Filmes" type="text" name="nome" id="nome">
+        <input value="<%= locals.old && old.nome %>" placeholder="Digite aqui o Nome do Filmes" type="text" name="nome" >
         <br>
-        <label for="ator">Ator</label>
+        <label for="">Ator</label>
         <br>
-        <input placeholder="Digite Aqui o Nome Do Ator" type="text" name="ator" id="ator">
+        <input placeholder="Digite Aqui o Nome Do Ator" type="text" name="ator">
         <br>
-        <label for="duracao">Duração</label>
+        <label for="">Duração</label>
         <br>
         <input type="number" name="duracao" id="duracao">
+        <br>
+        <label for="">Digite Aqui Seu Email</label>
+        <br>
+        <input placeholder="Digite Aqui o Seu Email" type="email" name="email">
         <br>
         <br>
         <label for="avatar">Sua Foto de Perfil</label>
@@ -28,7 +33,14 @@
         <br>
         <br>
         <button type="submit">Enviar</button>
-        
+        <% if (typeof(errors) != 'undefined') { %>
+                             
+            <ul>
+                <% for(let error in errors){ %>
+                    <li> <%= errors[error].msg %></li>
+                <% } %>            
+            </ul>
+        <% } %>
     </form>
 </body>
 </html>

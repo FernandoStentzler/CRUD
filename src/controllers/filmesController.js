@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const { validationResult } = require('express-validator');
 
 let filmes = [{
     id: 1,
@@ -31,9 +32,19 @@ const rotasFilmes = {
     //     res.send("Filme Adicionado Com Sucesso");
     // },
     criacaoDeFilmes: (req,res) =>{
-        let nome = req.body.nome;
-        let ator = req.body.ator;
-        let duracao = req.body.duracao;
+        let {nome, ator, email, duracao} = req.body;
+        // let nome = req.body.nome;
+        // let ator = req.body.ator;
+        // let duracao = req.body.duracao;
+        // let email = req.body.email;
+        let errors = validationResult(req)
+        if(errors.isEmpty()){            
+        }else{
+            console.log(errors.mapped())
+            return res.render('filmes', {errors: errors.mapped(), old: req.body});
+        }
+        
+        
                 
         res.send('Produto Adiciona Com Sucesso');
     },

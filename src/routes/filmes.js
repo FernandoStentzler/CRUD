@@ -3,6 +3,8 @@ const router = express.Router();
 const path = require('path')
 const filmesController = require('../controllers/filmesController');
 const multer = require('multer')
+const { body } = require('express-validator')
+const auth = require('../middlewares/auth')
 
 const multerStorage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -15,7 +17,11 @@ const multerStorage = multer.diskStorage({
     },
   });
   
-  const upload = multer({ storage: multerStorage });
+const upload = multer({ storage: multerStorage });
+const validacoes = [
+  body("nome").notEmpty().withMessage("Digite um Nome valido").isString(),
+  body("email").notEmpty().withMessage("Digite um Email valido").isEmail(),
+];
 
 // Listagem De Filmes
 router.get("/", filmesController.todosFilmes)
@@ -24,7 +30,7 @@ router.get("/", filmesController.todosFilmes)
 router.get("/:id", filmesController.filmesPorId)
 
 //Criação de Filmes
-router.post("/",upload.single('avatar') ,filmesController.criacaoDeFilmes)
+router.post("/",validacoes, upload.single('avatar') ,filmesController.criacaoDeFilmes)
 
 //Atualização de Filmes
 router.put('/:id', filmesController.atualizarFilmes)

@@ -3,10 +3,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const session = require('express-session');
 
 const indexRouter = require('./src/routes/index');
 const usersRouter = require('./src/routes/users');
 const filmesRouter = require('./src/routes/filmes')
+const logMiddleware = require('./src/middlewares/logSite')
 
 const app = express();
 
@@ -14,11 +16,19 @@ const app = express();
 app.set('views', path.join(__dirname, './src/views'));
 app.set('view engine', 'ejs');
 
+app.use(session({
+  secret:"projetoExpress",
+  resave:true,
+  saveUninitialized:true,
+}))
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(logMiddleware)
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
