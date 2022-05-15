@@ -9,6 +9,7 @@ const indexRouter = require('./src/routes/index');
 const usersRouter = require('./src/routes/users');
 const filmesRouter = require('./src/routes/filmes')
 const logMiddleware = require('./src/middlewares/logSite')
+const cookieMiddleware = require('./src/middlewares/cookieLogin')
 
 const app = express();
 
@@ -27,7 +28,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(logMiddleware)
+// app.use(cookieMiddleware);
+app.use(logMiddleware);
 
 
 app.use('/', indexRouter);
