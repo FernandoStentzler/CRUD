@@ -15,7 +15,7 @@ let userController = {
         let criptografada = bcrypt.hashSync(senha, 10)
         let user = JSON.stringify({nome, email, senha:criptografada})
         
-        fs.writeFileSync(userJson, user)
+        fs.appendFileSync(userJson, user)
         res.send('Usuario Cadastrado Com Sucesso')
     },
 

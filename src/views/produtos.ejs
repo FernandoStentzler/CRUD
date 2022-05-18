@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Cadastro de Produtos para Venda</h1>
+
+    <form action="/produtos/criar" method="POST" >
+        <h3>Nome do Vendedor</h3>
+        <input value="<%= locals.old && old.vendedor %>" type="text" name="vendedor" id="">
+        <h3>Nome Do Produto</h3>
+        <input value="<%= locals.old && old.produto %>" type="text" name="produto" id="">
+        <h3>Preço do Produto</h3>
+        <input value="<%= locals.old && old.preco %>" type="number" name="preco" id="">
+        <br><br>
+        <button type="submit">Cadastrar Produto</button>
+
+        <% if (typeof(errors) != "undefined") { %>
+                             
+            <ul>
+                <% for(let error in errors){ %>
+                    <li> <%= errors[error].msg %></li>
+                <% } %>            
+            </ul>
+        <% } %>
+
+    </form>
+
+</body>
+</html>

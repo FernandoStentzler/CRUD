@@ -7,9 +7,11 @@ const session = require('express-session');
 
 const indexRouter = require('./src/routes/index');
 const usersRouter = require('./src/routes/users');
-const filmesRouter = require('./src/routes/filmes')
-const logMiddleware = require('./src/middlewares/logSite')
-const cookieMiddleware = require('./src/middlewares/cookieLogin')
+const filmesRouter = require('./src/routes/filmes');
+const produtosRouter = require('./src/routes/produtos');
+
+const logMiddleware = require('./src/middlewares/logSite');
+const cookieMiddleware = require('./src/middlewares/cookieLogin');
 
 const app = express();
 
@@ -34,7 +36,8 @@ app.use(logMiddleware);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/filmes', filmesRouter)
+app.use('/filmes', filmesRouter);
+app.use('/produtos', produtosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
