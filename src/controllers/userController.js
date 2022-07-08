@@ -24,7 +24,7 @@ let userController = {
     },
 
     logarUser:(req,res)=>{
-        let {email, senha} = req.body;
+        let {email, senha, logado} = req.body;
         let userSave = fs.readFileSync(userJson, {encoding:'utf-8'});
         userSave = JSON.parse(userSave);
 
@@ -36,7 +36,13 @@ let userController = {
             return res.send("Senha Invalida")
         }
 
-        res.redirect('/home')
+        req.session.user = userSave
+
+        if(logado != undefined){
+            res.cookie('logado', userSave.email, {maxAge:600000})
+        }
+
+        res.redirect('/produtos')
 
     },
 }

@@ -19,15 +19,17 @@ let produtosController = {
             console.log(errors.mapped())
             return res.render('produtos', {errors: errors.mapped(), old: req.body});
         }
-
-
-        let dado = JSON.stringify({vendedor, produto, preco})
-
-
+        let dado = JSON.stringify([{vendedor:vendedor, produto:produto, preco:preco}])
         fs.appendFileSync(produtosJson, dado)
-        res.send('Produto Cadastrado Com Sucesso')
-    }
+        res.send('Produto Cadastro Com Sucesso')
+    },
 
+    listarProdutos:(req,res)=>{
+        let produtos = fs.readFileSync(produtosJson, {encoding:'utf-8'})
+        produtos = JSON.parse(produtos)
+
+        res.render('listaProdutos', {listaProdutos:produtos, user:req.session.user})
+    }
 }
 
 module.exports = produtosController
